@@ -1,3 +1,5 @@
+# Pinned: instagrapi 2.2+ may break private-account login; re-test before upgrading
+# Requires Python 3.11 — pydantic-core wheels not available for 3.12+
 instagrapi==2.1.2
 Pillow>=10.0.0
 python-dotenv>=1.0.0
