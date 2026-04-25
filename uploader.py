@@ -1,5 +1,4 @@
 import time
-import random
 from instagrapi import Client
 from instagrapi.exceptions import RateLimitError
 
@@ -29,6 +28,3 @@ class Uploader:
             print(f"  Upload failed for {filepath}: {e}")
             return False
 
-    def random_delay(self):
-        delay = random.uniform(30, 60)
-        time.sleep(delay)
