@@ -1,13 +1,19 @@
+import os
 import time
 from instagrapi import Client
 from instagrapi.exceptions import RateLimitError
+
+SESSION_FILE = "session.json"
 
 
 class Uploader:
     def __init__(self, username: str, password: str):
         self._client = Client()
         try:
+            if os.path.exists(SESSION_FILE):
+                self._client.load_settings(SESSION_FILE)
             self._client.login(username, password)
+            self._client.dump_settings(SESSION_FILE)
         except Exception as e:
             raise RuntimeError(f"Login failed: {e}")
 
