@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 class Tracker:
@@ -28,7 +28,7 @@ class Tracker:
         try:
             self._conn.execute(
                 "INSERT INTO uploads (filepath, md5_hash, uploaded_at) VALUES (?, ?, ?)",
-                (filepath, md5_hash, datetime.utcnow().isoformat())
+                (filepath, md5_hash, datetime.now(timezone.utc).isoformat())
             )
             self._conn.commit()
         except sqlite3.IntegrityError:
