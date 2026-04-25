@@ -1,7 +1,7 @@
 import time
 import random
 from instagrapi import Client
-from instagrapi.exceptions import LoginRequired, RateLimitError
+from instagrapi.exceptions import RateLimitError
 
 
 class Uploader:
