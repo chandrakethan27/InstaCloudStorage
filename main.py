@@ -14,6 +14,7 @@ IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 
 
 def scan_folder(folder: str) -> list[str]:
+    # Non-recursive: only scans the top-level folder, not subdirectories
     return [
         str(p)
         for p in Path(folder).iterdir()
@@ -93,12 +94,14 @@ def main():
     print("Login successful.")
     tracker = Tracker()
 
+    counts = None
     try:
         counts = run(args.folder, tracker, uploader)
     finally:
         tracker.close()
 
-    print(f"\nDone. Uploaded: {counts['uploaded']}  Skipped: {counts['skipped']}  Failed: {counts['failed']}")
+    if counts is not None:
+        print(f"\nDone. Uploaded: {counts['uploaded']}  Skipped: {counts['skipped']}  Failed: {counts['failed']}")
 
 
 if __name__ == "__main__":
